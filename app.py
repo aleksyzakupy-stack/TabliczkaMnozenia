@@ -49,7 +49,7 @@ if st.session_state.running and st.session_state.current_index < len(st.session_
     if st.session_state.start_time is None:
         st.session_state.start_time = time.perf_counter()
 
-    answer = st.text_input("Wpisz wynik:", key=f"answer_{st.session_state.current_index}")
+    answer = st.text_input("Wpisz wynik:", key=f"answer_{st.session_state.current_index}", autofocus=True)
 
     if answer:
         try:
