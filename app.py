@@ -49,8 +49,15 @@ if st.session_state.running and st.session_state.current_index < len(st.session_
     if st.session_state.start_time is None:
         st.session_state.start_time = time.perf_counter()
 
-    answer = st.text_input("Wpisz wynik:", key=f"answer_{st.session_state.current_index}")
-    components.html(
+    import streamlit.components.v1 as components
+
+answer = st.text_input(
+    "Wpisz wynik:",
+    key=f"answer_{st.session_state.current_index}"
+)
+
+# Автофокус с помощью JS
+components.html(
     f"""
     <script>
     var input = window.parent.document.querySelector('input[id="answer_{st.session_state.current_index}"]');
