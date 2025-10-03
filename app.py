@@ -50,17 +50,16 @@ if st.session_state.running and st.session_state.current_index < len(st.session_
     if st.session_state.start_time is None:
         st.session_state.start_time = time.perf_counter()
 
-    input_key = f"answer_{st.session_state.current_index}"
-    answer = st.text_input("Wpisz wynik:", key=input_key)
+    answer = st.text_input("Wpisz wynik:", key=f"answer_{st.session_state.current_index}")
 
-    # Autofocus przez JS
+    # Autofocus przez JS – zawsze ostatnie pole tekstowe
     components.html(
-        f"""
+        """
         <script>
-        var input = window.parent.document.querySelector('input[id="{input_key}"]');
-        if(input) {{
-            input.focus();
-        }}
+        const inputs = window.parent.document.querySelectorAll('input[type="text"]');
+        if(inputs.length > 0) {
+            inputs[inputs.length-1].focus();
+        }
         </script>
         """,
         height=0,
