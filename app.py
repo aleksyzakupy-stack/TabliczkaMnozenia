@@ -2,7 +2,6 @@ import streamlit as st
 import random
 import time
 import pandas as pd
-import streamlit.components.v1 as components
 
 st.title("Trening tabliczki mnożenia – seria 10 przykładów")
 
@@ -51,23 +50,6 @@ if st.session_state.running and st.session_state.current_index < len(st.session_
         st.session_state.start_time = time.perf_counter()
 
     answer = st.text_input("Wpisz wynik:", key=f"answer_{st.session_state.current_index}")
-
-    # Autofocus przez JS – zawsze ostatnie pole tekstowe
-    components.html(
-        """
-        <script>
-        setTimeout(function(){
-            const inputs = window.parent.document.querySelectorAll('input[type="text"]');
-            if (inputs.length > 0) {
-                const el = inputs[inputs.length - 1];
-                el.focus();
-                try { el.select(); } catch(e) {}
-            }
-        }, 50);
-        </script>
-        """,
-        height=0
-    )
 
     if answer:
         try:
